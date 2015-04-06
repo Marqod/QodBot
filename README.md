@@ -6,7 +6,7 @@ This bot is intended as a simple way to roll dice in Internet Relay Chat channel
 Here, you CAN see the individual results of your rolls.
 
 Usage once compiled:
-java QodBot <server> <channel1> <channel2> etc.
+java QodBot server channel1 channel2 etc.
 
 At least the server and one channel must be provided.
 
