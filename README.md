@@ -11,7 +11,7 @@ java QodBot <server> <channel1> <channel2> etc.
 At least the server and one channel must be provided.
 
 Syntax in-channel:
->roll (NdM|Ndf|advantage|disadvantage)([+-](NdM|Ndf)){0-8}([+-]M)?
+">roll (NdM|Ndf|advantage|disadvantage)([+-](NdM|Ndf)){0-8}([+-]M)?"
 
 NdM: N M-sided dice.
 Ndf: N Fudge/FATE dice (d3-2).
