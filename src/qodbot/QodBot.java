@@ -51,7 +51,7 @@ public class QodBot extends PircBot{
             int roll = (rng.nextInt(19)+1);
             System.out.println("d20 roll: " + roll);
             sendMessage(channel, sender + "'s 1d20 roll: " + roll);
-        } else if ((message).matches("^>roll ((\\d)+d((\\d)+|f)|advantage|disadvantage)([\\+\\-](\\d)+d((\\d)+|f)){0,8}([\\+\\-](\\d+))?")){
+        } else if ((message).matches("^>roll ((\\d)+d((\\d)+|f)|advantage|disadvantage)([\\+\\-](\\d)+d((\\d)+|f)){0,8}([\\+\\-](\\d+))?( .*)?")){
             //This is a proper dice roll.
             String alteredMessage = message.replace(">roll ","");
             alteredMessage = alteredMessage.toLowerCase();

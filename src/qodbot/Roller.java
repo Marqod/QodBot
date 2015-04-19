@@ -40,9 +40,33 @@ public class Roller {
         boolean fail = false;
         
         //Split request into separate rolls
+        //First, split off the trailing text.
+        String rollRequest;
+        String trailingText;
+        if((request).matches("((\\d)+d((\\d)+|f)|advantage|disadvantage)([\\+\\-](\\d)+d((\\d)+|f)){0,8}([\\+\\-](\\d+))?")){
+            //No trailing text
+            //DEBUG
+            System.out.println("No trailing text removed.");
+            
+            rollRequest = request;
+            trailingText = "";
+        } else {
+            //Split off trailing string, save for later.
+            //DEBUG
+            System.out.println("Trailing text found.");
+            
+            Pattern pattern = Pattern.compile("((\\d)+d((\\d)+|f)|advantage|disadvantage)([\\+\\-](\\d)+d((\\d)+|f)){0,8}([\\+\\-](\\d+))?");
+            Matcher matcher = pattern.matcher(request);
+            matcher.find();
+            rollRequest = matcher.group();
+            trailingText = request.replaceFirst("((\\d)+d((\\d)+|f)|advantage|disadvantage)([\\+\\-](\\d)+d((\\d)+|f)){0,8}([\\+\\-](\\d+))?", "");
+        }
+        
+        //Split off rest of call into separate rolls.
+        //TODO
         Pattern pattern = Pattern.compile("[+-]");
-        String[] expressions = pattern.split(request);
-        Matcher matcher = pattern.matcher(request);
+        String[] expressions = pattern.split(rollRequest);
+        Matcher matcher = pattern.matcher(rollRequest);
         //Distinguish between + and -.
         int[] multipliers = new int[expressions.length];
         
@@ -163,6 +187,9 @@ public class Roller {
         
         //Add sum to response string.
         responseString += ("Final result: " + responseValue);
+        
+        //Add trailing text from command.
+        responseString+=trailingText;
         
         //Return statement.
         String[] finalResponse = new String[3];
